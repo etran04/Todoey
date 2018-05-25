@@ -58,7 +58,7 @@
 			children = (
 				077A2F0220B7BF40009C986D /* AppDelegate.swift */,
 				077A2F1820B7DC82009C986D /* Model */,
-				077A2F1920B7DC90009C986D /* View */,
+				077A2F1B20B7E7B9009C986D /* View */,
 				077A2F1720B7DC75009C986D /* Controller */,
 				077A2F1A20B7DCD1009C986D /* Supporting Files */,
 				077A2F0E20B7BF40009C986D /* Info.plist */,
@@ -82,15 +82,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		077A2F1920B7DC90009C986D /* View */ = {
-			isa = PBXGroup;
-			children = (
-				077A2F0620B7BF40009C986D /* Main.storyboard */,
-			);
-			name = View;
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		077A2F1A20B7DCD1009C986D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +89,14 @@
 				077A2F0B20B7BF40009C986D /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		077A2F1B20B7E7B9009C986D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				077A2F0620B7BF40009C986D /* Main.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
