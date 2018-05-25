@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Item {
+class Item : Codable {
     
     init(task: String, isChecked: Bool) {
         self.task = task
