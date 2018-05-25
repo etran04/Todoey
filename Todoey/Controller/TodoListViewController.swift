@@ -10,12 +10,17 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
 
-    var itemArray = ["do this", "do that", "do thing"]
-    var newItem: String = ""
+    var itemArray = [Item]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        itemArray.append(Item(task: "test 1", isChecked: false))
+        itemArray.append(Item(task: "test 2", isChecked: false))
+        itemArray.append(Item(task: "test 3", isChecked: false))
+    
+        // userdefault is used only to save small dtails, not as a database!!
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,7 +31,12 @@ class TodoListViewController: UITableViewController {
     //MARK: - Tableview datasource methods
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
-        cell.textLabel?.text = itemArray[indexPath.row]
+        
+        let item = itemArray[indexPath.row]
+        
+        cell.textLabel?.text = item.task
+        cell.accessoryType = item.isChecked == true ? .checkmark : .none
+
         return cell
     }
     
@@ -36,12 +46,8 @@ class TodoListViewController: UITableViewController {
 
     //MARK: - Tableview Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        if cell?.accessoryType == .checkmark {
-            cell?.accessoryType = .none
-        } else {
-            cell?.accessoryType = .checkmark
-        }
+        itemArray[indexPath.row].isChecked = !itemArray[indexPath.row].isChecked
+        tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
@@ -52,7 +58,7 @@ class TodoListViewController: UITableViewController {
         let alert = UIAlertController(title: "Add new Todoey Item", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-            self.itemArray.append(textField.text!)
+            self.itemArray.append(Item(task: textField.text!, isChecked: false))
             self.tableView.reloadData()
         }
         
@@ -62,8 +68,7 @@ class TodoListViewController: UITableViewController {
         }
 
         alert.addAction(action)
-        present(alert, animated: true) {
-        }
+        present(alert, animated: true, completion: nil)
     
     }
 }
